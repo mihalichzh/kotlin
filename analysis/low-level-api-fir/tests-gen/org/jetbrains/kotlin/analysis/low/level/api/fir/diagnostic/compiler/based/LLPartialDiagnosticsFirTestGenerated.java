@@ -12509,5 +12509,33 @@ public class LLPartialDiagnosticsFirTestGenerated extends AbstractLLPartialDiagn
         runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/versionOverloads/withLambdaDefaults.kt");
       }
     }
+
+    @Nested
+    @TestMetadata("compiler/fir/analysis-tests/testData/resolveWithStdlib/when")
+    @TestDataPath("$PROJECT_ROOT")
+    public class When {
+      @Test
+      public void testAllFilesPresentInWhen() {
+        KtTestUtil.assertAllTestsPresentByMetadataWithExcluded(this.getClass(), new File("compiler/fir/analysis-tests/testData/resolveWithStdlib/when"), Pattern.compile("^([^.]+)\\.kt(\\.can-freeze-ide)?$"), null, true);
+      }
+
+      @Test
+      @TestMetadata("whenElseIsNotTheLastCase.kt")
+      public void testWhenElseIsNotTheLastCase() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenElseIsNotTheLastCase.kt");
+      }
+
+      @Test
+      @TestMetadata("whenExpressionEmptyBlock.kt")
+      public void testWhenExpressionEmptyBlock() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenExpressionEmptyBlock.kt");
+      }
+
+      @Test
+      @TestMetadata("whenExpressionNonExhaustiveWithCase.kt")
+      public void testWhenExpressionNonExhaustiveWithCase() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenExpressionNonExhaustiveWithCase.kt");
+      }
+    }
   }
 }
