@@ -1,8 +1,7 @@
 // RUN_PIPELINE_TILL: FRONTEND
-// DIAGNOSTICS: -SYNTAX
 
 fun test() {
-    when ("subject")
+    when ("subject")<!SYNTAX!><!>
 }
 
 /* GENERATED_FIR_TAGS: functionDeclaration, whenExpression */

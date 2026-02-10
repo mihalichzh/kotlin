@@ -1,8 +1,7 @@
 // RUN_PIPELINE_TILL: FRONTEND
-// DIAGNOSTICS: -INCOMPATIBLE_TYPES
 
 val test = when(2) {
-    "bar" -> println("bar")
+    <!INCOMPATIBLE_TYPES!>"bar"<!> -> println("bar")
     else -> "foo"
 }
 

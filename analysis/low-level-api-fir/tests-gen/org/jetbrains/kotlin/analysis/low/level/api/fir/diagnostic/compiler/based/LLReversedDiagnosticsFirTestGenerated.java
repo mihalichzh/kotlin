@@ -12544,9 +12544,45 @@ public class LLReversedDiagnosticsFirTestGenerated extends AbstractLLReversedDia
       }
 
       @Test
+      @TestMetadata("nonSubjectWhenWithMissingConditionStatement.kt")
+      public void testNonSubjectWhenWithMissingConditionStatement() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/nonSubjectWhenWithMissingConditionStatement.kt");
+      }
+
+      @Test
       @TestMetadata("subjectWhenWithEmptySubject.kt")
       public void testSubjectWhenWithEmptySubject() {
         runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/subjectWhenWithEmptySubject.kt");
+      }
+
+      @Test
+      @TestMetadata("subjectWhenWithWithoutBrackets.kt")
+      public void testSubjectWhenWithWithoutBrackets() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/subjectWhenWithWithoutBrackets.kt");
+      }
+
+      @Test
+      @TestMetadata("whenKeywordAsClassName.kt")
+      public void testWhenKeywordAsClassName() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsClassName.kt");
+      }
+
+      @Test
+      @TestMetadata("whenKeywordAsEnumEntry.kt")
+      public void testWhenKeywordAsEnumEntry() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsEnumEntry.kt");
+      }
+
+      @Test
+      @TestMetadata("whenKeywordAsFunctionName.kt")
+      public void testWhenKeywordAsFunctionName() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsFunctionName.kt");
+      }
+
+      @Test
+      @TestMetadata("whenKeywordAsVariableName.kt")
+      public void testWhenKeywordAsVariableName() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsVariableName.kt");
       }
 
       @Test

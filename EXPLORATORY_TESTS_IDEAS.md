@@ -352,7 +352,9 @@ fun main() {
     }
 }
 ```
+
 29. Return from when block - function returns 'from foo block':
+
 ```kotlin
 fun test(): String {
     when {
@@ -366,17 +368,30 @@ fun test(): String {
 
 ## Negative ('red') checks
 
-1. when expression non-exhaustive without else - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustive.kt);
+1. when expression non-exhaustive without else -
+   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustive.kt);
 2. else is not the last case - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/misplacedElse.kt);
-3. when expression with empty block - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/emptyExpressionWhenBlock.kt);
-4. without subject condition type mismatch - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/withoutSubjectTypeMismatch.kt);
-5. with subject condition incompatible type - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/withSubjectIncompatibleTypes.kt);
-6. boolean expression in where with subject - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/booleanExpressionInWhenWithSubjectCase.kt);
+3. when expression with empty block -
+   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/emptyExpressionWhenBlock.kt);
+4. without subject condition type mismatch -
+   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/withoutSubjectTypeMismatch.kt);
+5. with subject condition incompatible type -
+   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/withSubjectIncompatibleTypes.kt);
+6. boolean expression in where with subject -
+   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/booleanExpressionInWhenWithSubjectCase.kt);
 7. when with empty subject - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/subjectWhenWithEmptySubject.kt);
-8. when with subject without block - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/subjectWhenWithWithoutBrackets.kt);
-9. when with missing condition statement - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/nonSubjectWhenWithMissingConditionStatement.kt);
-
-
+8. when with subject without block -
+   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/subjectWhenWithWithoutBrackets.kt);
+9. when with missing condition statement -
+   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/nonSubjectWhenWithMissingConditionStatement.kt);
+10. when keyword as a variable name -
+    see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsVariableName.kt);
+11. when keyword as a function name -
+    see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsFunctionName.kt);
+12. when keyword as a class name - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsClassName.kt);
+13. when keyword as a enum entry name -
+    see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsEnumEntry.kt);
+14. when as a type - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsVariableType.kt);
 
 
 13. Use non-subject when with ranges:
@@ -464,47 +479,50 @@ val test = when (bool) {
 }
 ```
 
-15. when as variable name:
-```kotlin
-val when = "bla"
-```
-16. when as a function name:
-```kotlin
-fun when() {}
-```
 17. when as a type:
+
 ```kotlin
 val test: when = "bla"
 ```
+
 18. when with two consecutive trailing commas:
+
 ```kotlin
-val test = when(3) {
-    3,, -> ""
+val test = when (3) {
+    3, , -> ""
     else -> ""
 }
 ```
+
 19. when with two consecutive intermediate commas:
+
 ```kotlin
-val test = when(3) {
-    3,,4 -> ""
+val test = when (3) {
+    3, ,4 -> ""
     else -> ""
 }
 ```
+
 20. when with two consecutive preceding commas:
+
 ```kotlin
-val test = when(3) {
-    ,,3 -> ""
+val test = when (3) {
+        ,,3 -> ""
     else -> ""
 }
 ```
+
 21. when with comma instead of statement:
+
 ```kotlin
 val test = when (3) {
         , -> ""
-        else -> ""
+    else -> ""
 }
 ```
+
 13. when with subject outside of function:
+
 ```kotlin
 val userRole = "Editor"
 when (userRole) {
