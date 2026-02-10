@@ -352,6 +352,17 @@ fun main() {
     }
 }
 ```
+29. Return from when block - function returns 'from foo block':
+```kotlin
+fun test(): String {
+    when {
+        "foo".length < 3 -> {
+            return "from foo block"
+        }
+        else -> return "else"
+    }
+}
+```
 
 ## Negative ('red') checks
 
@@ -360,33 +371,15 @@ fun main() {
 3. when expression with empty block - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/emptyExpressionWhenBlock.kt);
 4. without subject condition type mismatch - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/withoutSubjectTypeMismatch.kt);
 5. with subject condition incompatible type - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/withSubjectIncompatibleTypes.kt);
-6. todo:
+6. boolean expression in where with subject - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/booleanExpressionInWhenWithSubjectCase.kt);
+7. when with empty subject - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/subjectWhenWithEmptySubject.kt);
+8. when with subject without block - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/subjectWhenWithWithoutBrackets.kt);
+9. when with missing condition statement - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/nonSubjectWhenWithMissingConditionStatement.kt);
 
-```kotlin
-fun main() {
-    when {
-        "foo".length > 3 -> {
-            println("block")
-            return ""
-        }
-        else -> ""
-    }
-}
-```
 
-7. Logical expression in where with subject:
 
-```kotlin
-fun main() {
-    val subject = "foo bar"
-    val result = when (subject) {
-        subject > 2 -> "first match"
-        else -> "else"
-    }
-}
-```
 
-8. Use non-subject when with ranges:
+13. Use non-subject when with ranges:
 
 ```kotlin
 val subject = 4
@@ -511,13 +504,6 @@ val test = when (3) {
         else -> ""
 }
 ```
-12. when with missing statement:
-```kotlin
-val test = when(3) {
-    -> ""
-    else -> ""
-}
-```
 13. when with subject outside of function:
 ```kotlin
 val userRole = "Editor"
@@ -526,17 +512,4 @@ when (userRole) {
     "Editor" -> print("User can edit content")
     else -> print("User role is not recognized")
 } 
-```
-14. when with subject without brackets:
-```kotlin
-fun test() {
-    when ("test")
-}
-```
-14. when with empty subject:
-```kotlin
-fun test() {
-    when () {
-    }
-}
 ```

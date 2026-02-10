@@ -12520,15 +12520,15 @@ public class LLReversedDiagnosticsFirTestGenerated extends AbstractLLReversedDia
       }
 
       @Test
-      @TestMetadata("emptyExpressionWhenBlock.kt")
-      public void testEmptyExpressionWhenBlock() {
-        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/emptyExpressionWhenBlock.kt");
+      @TestMetadata("booleanExpressionInWhenWithSubjectCase.kt")
+      public void testBooleanExpressionInWhenWithSubjectCase() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/booleanExpressionInWhenWithSubjectCase.kt");
       }
 
       @Test
-      @TestMetadata("expressionConditionTypeMismatch.kt")
-      public void testExpressionConditionTypeMismatch() {
-        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionConditionTypeMismatch.kt");
+      @TestMetadata("emptyExpressionWhenBlock.kt")
+      public void testEmptyExpressionWhenBlock() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/emptyExpressionWhenBlock.kt");
       }
 
       @Test
@@ -12544,9 +12544,21 @@ public class LLReversedDiagnosticsFirTestGenerated extends AbstractLLReversedDia
       }
 
       @Test
-      @TestMetadata("whenWithSubjectOncompatibleTypeMatch.kt")
-      public void testWhenWithSubjectOncompatibleTypeMatch() {
-        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenWithSubjectOncompatibleTypeMatch.kt");
+      @TestMetadata("subjectWhenWithEmptySubject.kt")
+      public void testSubjectWhenWithEmptySubject() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/subjectWhenWithEmptySubject.kt");
+      }
+
+      @Test
+      @TestMetadata("withSubjectIncompatibleTypes.kt")
+      public void testWithSubjectIncompatibleTypes() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/withSubjectIncompatibleTypes.kt");
+      }
+
+      @Test
+      @TestMetadata("withoutSubjectTypeMismatch.kt")
+      public void testWithoutSubjectTypeMismatch() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/withoutSubjectTypeMismatch.kt");
       }
     }
   }
