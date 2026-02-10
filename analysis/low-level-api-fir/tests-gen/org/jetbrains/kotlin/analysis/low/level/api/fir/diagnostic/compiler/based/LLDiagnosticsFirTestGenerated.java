@@ -12520,21 +12520,33 @@ public class LLDiagnosticsFirTestGenerated extends AbstractLLDiagnosticsTest {
       }
 
       @Test
-      @TestMetadata("whenElseIsNotTheLastCase.kt")
-      public void testWhenElseIsNotTheLastCase() {
-        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenElseIsNotTheLastCase.kt");
+      @TestMetadata("emptyExpressionWhenBlock.kt")
+      public void testEmptyExpressionWhenBlock() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/emptyExpressionWhenBlock.kt");
       }
 
       @Test
-      @TestMetadata("whenExpressionEmptyBlock.kt")
-      public void testWhenExpressionEmptyBlock() {
-        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenExpressionEmptyBlock.kt");
+      @TestMetadata("expressionConditionTypeMismatch.kt")
+      public void testExpressionConditionTypeMismatch() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionConditionTypeMismatch.kt");
       }
 
       @Test
-      @TestMetadata("whenExpressionNonExhaustiveWithCase.kt")
-      public void testWhenExpressionNonExhaustiveWithCase() {
-        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenExpressionNonExhaustiveWithCase.kt");
+      @TestMetadata("expressionNonExhaustive.kt")
+      public void testExpressionNonExhaustive() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustive.kt");
+      }
+
+      @Test
+      @TestMetadata("misplacedElse.kt")
+      public void testMisplacedElse() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/misplacedElse.kt");
+      }
+
+      @Test
+      @TestMetadata("whenWithSubjectOncompatibleTypeMatch.kt")
+      public void testWhenWithSubjectOncompatibleTypeMatch() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenWithSubjectOncompatibleTypeMatch.kt");
       }
     }
   }
