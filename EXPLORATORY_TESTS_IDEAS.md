@@ -108,6 +108,16 @@ fun main() {
 }
 ```
 
+* Expression returning boolean in statements - 'result' is assigned with matching value:
+
+```kotlin
+val subject = "bla"
+val result = when {
+    subject.isEmpty() -> "Empty"
+    else -> subject
+}
+```
+
 * Statement with case duplicate - no compilation/runtime errors, first matched value is printed to console:
 
 ```kotlin
@@ -276,6 +286,28 @@ val test = when (subject) {
 }
 ```
 
+* Subject with 'is' expression match - 'match' is assigned to result:
+
+```kotlin
+val subject = 4
+val test = when (subject) {
+    is String -> "not a match"
+    is Number -> "match"
+    else -> "not a match"
+}
+```
+
+* Subject with '!is' expression match - 'match' is assigned to result:
+
+```kotlin
+val subject = 4
+val test = when (subject) {
+    !is String -> "match"
+    is Any -> "not a match"
+    else -> "not a match"
+}
+```
+
 * Variable declaration within the subject - 'foo' is printed out:
 
 ```kotlin
@@ -408,7 +440,7 @@ fun main() {
 * when expression with empty block -
    see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/emptyExpressionWhenBlock.kt);
 * without subject condition type mismatch -
-   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/withoutSubjectTypeMismatch.kt);
+   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionTypeMismatch.kt);
 * with subject condition incompatible type -
    see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/withSubjectIncompatibleTypes.kt);
 * boolean expression in where with subject -
