@@ -12526,15 +12526,45 @@ public class LLReversedDiagnosticsFirTestGenerated extends AbstractLLReversedDia
       }
 
       @Test
+      @TestMetadata("commaAtTheCaseBeginning.kt")
+      public void testCommaAtTheCaseBeginning() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/commaAtTheCaseBeginning.kt");
+      }
+
+      @Test
+      @TestMetadata("conditionStatementContainsOnlyComma.kt")
+      public void testConditionStatementContainsOnlyComma() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/conditionStatementContainsOnlyComma.kt");
+      }
+
+      @Test
       @TestMetadata("emptyExpressionWhenBlock.kt")
       public void testEmptyExpressionWhenBlock() {
         runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/emptyExpressionWhenBlock.kt");
       }
 
       @Test
-      @TestMetadata("expressionNonExhaustive.kt")
-      public void testExpressionNonExhaustive() {
-        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustive.kt");
+      @TestMetadata("expressionNonExhaustiveBoolean.kt")
+      public void testExpressionNonExhaustiveBoolean() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveBoolean.kt");
+      }
+
+      @Test
+      @TestMetadata("expressionNonExhaustiveSealedClass.kt")
+      public void testExpressionNonExhaustiveSealedClass() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveSealedClass.kt");
+      }
+
+      @Test
+      @TestMetadata("expressionNonExhaustiveWithEnum.kt")
+      public void testExpressionNonExhaustiveWithEnum() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveWithEnum.kt");
+      }
+
+      @Test
+      @TestMetadata("expressionNonExhaustiveWithOpenType.kt")
+      public void testExpressionNonExhaustiveWithOpenType() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveWithOpenType.kt");
       }
 
       @Test
@@ -12544,9 +12574,21 @@ public class LLReversedDiagnosticsFirTestGenerated extends AbstractLLReversedDia
       }
 
       @Test
-      @TestMetadata("nonSubjectWhenWithMissingConditionStatement.kt")
-      public void testNonSubjectWhenWithMissingConditionStatement() {
-        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/nonSubjectWhenWithMissingConditionStatement.kt");
+      @TestMetadata("missingConditionStatement.kt")
+      public void testMissingConditionStatement() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/missingConditionStatement.kt");
+      }
+
+      @Test
+      @TestMetadata("nonSubjectWhenWithRangeWithoutArgument.kt")
+      public void testNonSubjectWhenWithRangeWithoutArgument() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/nonSubjectWhenWithRangeWithoutArgument.kt");
+      }
+
+      @Test
+      @TestMetadata("referOuterVariableInGuard.kt")
+      public void testReferOuterVariableInGuard() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/referOuterVariableInGuard.kt");
       }
 
       @Test
@@ -12559,6 +12601,18 @@ public class LLReversedDiagnosticsFirTestGenerated extends AbstractLLReversedDia
       @TestMetadata("subjectWhenWithWithoutBrackets.kt")
       public void testSubjectWhenWithWithoutBrackets() {
         runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/subjectWhenWithWithoutBrackets.kt");
+      }
+
+      @Test
+      @TestMetadata("twoConsecutiveTrailingCommasAtTheCaseEnd.kt")
+      public void testTwoConsecutiveTrailingCommasAtTheCaseEnd() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/twoConsecutiveTrailingCommasAtTheCaseEnd.kt");
+      }
+
+      @Test
+      @TestMetadata("useGuardForMultipleConditionsCase.kt")
+      public void testUseGuardForMultipleConditionsCase() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/useGuardForMultipleConditionsCase.kt");
       }
 
       @Test
@@ -12583,6 +12637,12 @@ public class LLReversedDiagnosticsFirTestGenerated extends AbstractLLReversedDia
       @TestMetadata("whenKeywordAsVariableName.kt")
       public void testWhenKeywordAsVariableName() {
         runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsVariableName.kt");
+      }
+
+      @Test
+      @TestMetadata("whenKeywordAsVariableType.kt")
+      public void testWhenKeywordAsVariableType() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsVariableType.kt");
       }
 
       @Test
