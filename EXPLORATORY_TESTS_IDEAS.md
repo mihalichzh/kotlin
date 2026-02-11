@@ -521,6 +521,8 @@ val result: String = when(1L) {
   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/useGuardForMultipleConditionsCase.kt);
 * use guard condition in when without subject -
   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/guardConditionInWhenWIthoutSubject.kt);
+* use non-boolean in guard - 
+    see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/nonBooleanInGuard.kt);
 * non-exhaustive with enum - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveWithEnum.kt);
 * non-exhaustive with sealed class -
   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveSealedClass.kt);
