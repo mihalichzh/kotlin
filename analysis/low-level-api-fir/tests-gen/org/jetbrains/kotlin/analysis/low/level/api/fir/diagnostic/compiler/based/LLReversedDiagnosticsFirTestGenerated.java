@@ -12526,6 +12526,12 @@ public class LLReversedDiagnosticsFirTestGenerated extends AbstractLLReversedDia
       }
 
       @Test
+      @TestMetadata("capturedSubjectReassign.kt")
+      public void testCapturedSubjectReassign() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/capturedSubjectReassign.kt");
+      }
+
+      @Test
       @TestMetadata("commaAtTheCaseBeginning.kt")
       public void testCommaAtTheCaseBeginning() {
         runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/commaAtTheCaseBeginning.kt");
@@ -12574,6 +12580,18 @@ public class LLReversedDiagnosticsFirTestGenerated extends AbstractLLReversedDia
       }
 
       @Test
+      @TestMetadata("expressionTypeMismatch.kt")
+      public void testExpressionTypeMismatch() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionTypeMismatch.kt");
+      }
+
+      @Test
+      @TestMetadata("guardConditionInWhenWIthoutSubject.kt")
+      public void testGuardConditionInWhenWIthoutSubject() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/guardConditionInWhenWIthoutSubject.kt");
+      }
+
+      @Test
       @TestMetadata("misplacedElse.kt")
       public void testMisplacedElse() {
         runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/misplacedElse.kt");
@@ -12583,6 +12601,12 @@ public class LLReversedDiagnosticsFirTestGenerated extends AbstractLLReversedDia
       @TestMetadata("missingConditionStatement.kt")
       public void testMissingConditionStatement() {
         runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/missingConditionStatement.kt");
+      }
+
+      @Test
+      @TestMetadata("nonBooleanInGuard.kt")
+      public void testNonBooleanInGuard() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/nonBooleanInGuard.kt");
       }
 
       @Test
@@ -12613,6 +12637,12 @@ public class LLReversedDiagnosticsFirTestGenerated extends AbstractLLReversedDia
       @TestMetadata("twoConsecutiveTrailingCommasAtTheCaseEnd.kt")
       public void testTwoConsecutiveTrailingCommasAtTheCaseEnd() {
         runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/twoConsecutiveTrailingCommasAtTheCaseEnd.kt");
+      }
+
+      @Test
+      @TestMetadata("typeErasureInIsCondition.kt")
+      public void testTypeErasureInIsCondition() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/typeErasureInIsCondition.kt");
       }
 
       @Test
@@ -12655,12 +12685,6 @@ public class LLReversedDiagnosticsFirTestGenerated extends AbstractLLReversedDia
       @TestMetadata("withSubjectIncompatibleTypes.kt")
       public void testWithSubjectIncompatibleTypes() {
         runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/withSubjectIncompatibleTypes.kt");
-      }
-
-      @Test
-      @TestMetadata("withoutSubjectTypeMismatch.kt")
-      public void testWithoutSubjectTypeMismatch() {
-        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/withoutSubjectTypeMismatch.kt");
       }
     }
   }

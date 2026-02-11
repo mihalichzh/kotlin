@@ -536,3 +536,4 @@ val result: String = when(1L) {
   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/conditionStatementContainsOnlyComma.kt);
 * use var in subject capture - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/declareVarInSubjectCapture.kt);
 * generics type erasure in 'is' conditions - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/typeErasureInIsCondition.kt);
+* attempt to reassign captured subject - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/capturedSubjectReassign.kt);
