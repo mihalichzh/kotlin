@@ -60,7 +60,7 @@ fun main() {
 }
 ```
 
-* Expression without variable assignment - no compilation/runtime errors:
+* Statement without variable assignment - no compilation/runtime errors:
 
 ```kotlin
 val subject = "foobar"
@@ -102,8 +102,8 @@ class SecondSealed : Sealed
 fun main() {
     val subject = listOf(FirstSealed(), SecondSealed()).random()
     val result = when (subject) {
-        is FirstSealed -> println("First sealed")
-        is SecondSealed -> println("Second sealed")
+        is FirstSealed -> "First sealed"
+        is SecondSealed -> "Second sealed"
     }
 }
 ```
@@ -308,7 +308,7 @@ val test = when (subject) {
 }
 ```
 
-* Smart casting by 'is' expression - no compilation/runtime errors, result is assigned with lowercased subject value:
+* Smart casting by 'is' expression in match body - no compilation/runtime errors, result is assigned with lowercased subject value:
 
 ```kotlin
 val subject: Any = "ANY"
@@ -395,6 +395,16 @@ fun main() {
     }
 }
 ```
+* Smart casting by 'is' expression in guard - no compilation/runtime errors, result is assigned with 'long string':
+
+```kotlin
+val subject: Any = "ANY"
+val test = when (subject) {
+  is String if subject.length > 5 -> "long string"
+  is Number if subject.toLong() == 2L -> "small number"
+  else -> "not matched"
+}
+```
 
 * Guard condition with else if - no compilation/runtime errors, 'result' is assigned with '>2':
 
@@ -459,6 +469,24 @@ fun main() {
 }
 ```
 
+* Branches with 'Nothing' types - no compilation error, result variable type is resolved to String:
+```kotlin
+val result: String = when("test") {
+    is String -> "String"
+    is Int -> "Int"
+    is Double -> TODO("implement me")
+    else -> error("unknow type")
+}
+```
+
+* Unambiguous type is considered exhaustive in when expression - no compilation/runtime error, result is assigned with 'match':
+```kotlin
+val result: String = when(1L) {
+    is Long -> "match"
+    is Int -> "not a match"
+}
+```
+
 ## Negative ('red') checks
 
 * non-exhaustive with open type -
@@ -505,4 +533,4 @@ fun main() {
 * condition statement contains only comma -
   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/conditionStatementContainsOnlyComma.kt);
 * use var in subject capture - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/declareVarInSubjectCapture.kt);
-
+* generics type erasure in 'is' conditions - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/typeErasureInIsCondition.kt);
