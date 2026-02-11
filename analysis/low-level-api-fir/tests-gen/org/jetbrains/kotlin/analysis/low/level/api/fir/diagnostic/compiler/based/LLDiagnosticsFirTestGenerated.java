@@ -12538,6 +12538,12 @@ public class LLDiagnosticsFirTestGenerated extends AbstractLLDiagnosticsTest {
       }
 
       @Test
+      @TestMetadata("declareVarInSubjectCapture.kt")
+      public void testDeclareVarInSubjectCapture() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/declareVarInSubjectCapture.kt");
+      }
+
+      @Test
       @TestMetadata("emptyExpressionWhenBlock.kt")
       public void testEmptyExpressionWhenBlock() {
         runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/emptyExpressionWhenBlock.kt");

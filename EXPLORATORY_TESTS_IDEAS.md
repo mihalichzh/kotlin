@@ -379,6 +379,17 @@ fun main() {
 }
 ```
 
+* use outer variable name in subject capture - no compilation/runtime error, '1' is printed out:
+```kotlin
+fun main() {
+    val subject = 2
+    when (val subject = 1) {
+        1 -> println("1")
+        2 -> println("2")
+    }
+}
+```
+
 ## Negative ('red') checks
 
 * non-exhaustive with open type -
@@ -414,14 +425,5 @@ fun main() {
 * two consecutive trailing commas - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/twoConsecutiveTrailingCommasAtTheCaseEnd.kt);
 * comma in the beginning of the case - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/commaAtTheCaseBeginning.kt);
 * condition statement contains only comma - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/conditionStatementContainsOnlyComma.kt);
+* use var in subject capture - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/declareVarInSubjectCapture.kt);
 
-* when with subject outside of function:
-
-```kotlin
-val userRole = "Editor"
-when (userRole) {
-    "Viewer" -> print("User has read-only access")
-    "Editor" -> print("User can edit content")
-    else -> print("User role is not recognized")
-} 
-```
