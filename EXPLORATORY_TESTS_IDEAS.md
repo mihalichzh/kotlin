@@ -378,6 +378,16 @@ fun main() {
     }
 }
 ```
+* explicitly typed subject capture - no compilation/runtime error, '1L' is printed out:
+```kotlin
+fun main() {
+    val subject = 2
+    when (val subject: Long = 1) {
+        1L -> println("1L")
+        2L -> println("2L")
+    }
+}
+```
 
 * use outer variable name in subject capture - no compilation/runtime error, '1' is printed out:
 ```kotlin
