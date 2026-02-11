@@ -308,6 +308,17 @@ val test = when (subject) {
 }
 ```
 
+* Smart casting by 'is' expression - no compilation/runtime errors, result is assigned with lowercased subject value:
+
+```kotlin
+val subject: Any = "ANY"
+val test = when (subject) {
+    is String -> subject.lowercase()
+    is Number -> subject.toLong()
+    else -> "not matched"
+}
+```
+
 * Variable declaration within the subject - 'foo' is printed out:
 
 ```kotlin
@@ -325,7 +336,7 @@ fun main() {
 val value = "foo"
 val result = when (value) {
     value if value.length > 5 -> "not a match"
-    value if value.length < 5 -> "a match"
+    is String if value.length < 5 -> "a match"
     else -> "else"
 }
 ```
@@ -385,6 +396,19 @@ fun main() {
 }
 ```
 
+* Guard condition with else if - no compilation/runtime errors, 'result' is assigned with '>2':
+
+```kotlin
+fun main() {
+    val result = when (val subject = "test") {
+        is String if subject.length < 0 -> "< 2"
+        else if subject.length > 2 -> "> 2"
+        is String if subject.length > subject.length -> "!= 2"
+        else -> subject
+    }
+}
+```
+
 * Return from when block - function returns 'from foo block':
 
 ```kotlin
@@ -398,7 +422,7 @@ fun test(): String {
 }
 ```
 
-* trailing comma in case - no compilation/runtime error, result is assigned with 'match':
+* Trailing comma in case - no compilation/runtime error, result is assigned with 'match':
 
 ```kotlin
 fun main() {
@@ -410,7 +434,9 @@ fun main() {
     }
 }
 ```
-* explicitly typed subject capture - no compilation/runtime error, '1L' is printed out:
+
+* Explicitly typed subject capture - no compilation/runtime error, '1L' is printed out:
+
 ```kotlin
 fun main() {
     val subject = 2
@@ -421,7 +447,8 @@ fun main() {
 }
 ```
 
-* use outer variable name in subject capture - no compilation/runtime error, '1' is printed out:
+* Use outer variable name in subject capture - no compilation/runtime error, '1' is printed out:
+
 ```kotlin
 fun main() {
     val subject = 2
@@ -435,37 +462,47 @@ fun main() {
 ## Negative ('red') checks
 
 * non-exhaustive with open type -
-   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveWithOpenType.kt);
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveWithOpenType.kt);
 * else is not the last case - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/misplacedElse.kt);
 * when expression with empty block -
-   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/emptyExpressionWhenBlock.kt);
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/emptyExpressionWhenBlock.kt);
 * without subject condition type mismatch -
-   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionTypeMismatch.kt);
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionTypeMismatch.kt);
 * with subject condition incompatible type -
-   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/withSubjectIncompatibleTypes.kt);
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/withSubjectIncompatibleTypes.kt);
 * boolean expression in where with subject -
-   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/booleanExpressionInWhenWithSubjectCase.kt);
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/booleanExpressionInWhenWithSubjectCase.kt);
 * when with empty subject - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/subjectWhenWithEmptySubject.kt);
 * when with subject without block -
-   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/subjectWhenWithWithoutBrackets.kt);
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/subjectWhenWithWithoutBrackets.kt);
 * when with missing condition statement -
-   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/missingConditionStatement.kt);
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/missingConditionStatement.kt);
 * when keyword as a variable name -
-    see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsVariableName.kt);
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsVariableName.kt);
 * when keyword as a function name -
-    see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsFunctionName.kt);
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsFunctionName.kt);
 * when keyword as a class name - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsClassName.kt);
 * when keyword as a enum entry name -
-    see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsEnumEntry.kt);
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsEnumEntry.kt);
 * when as a type - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsVariableType.kt);
-* non-subject with range without argument - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/nonSubjectWhenWithRangeWithoutArgument.kt);
-* refer to outer variable in guard condition - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/referOuterVariableInGuard.kt);
-* use guard for multi-conditional case - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/useGuardForMultipleConditionsCase.kt);
+* non-subject with range without argument -
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/nonSubjectWhenWithRangeWithoutArgument.kt);
+* refer to outer variable in guard condition -
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/referOuterVariableInGuard.kt);
+* use guard for multi-conditional case -
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/useGuardForMultipleConditionsCase.kt);
+* use guard condition in when without subject -
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/guardConditionInWhenWIthoutSubject.kt);
 * non-exhaustive with enum - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveWithEnum.kt);
-* non-exhaustive with sealed class - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveSealedClass.kt);
-* non-exhaustive with boolean - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveBoolean.kt);
-* two consecutive trailing commas - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/twoConsecutiveTrailingCommasAtTheCaseEnd.kt);
-* comma in the beginning of the case - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/commaAtTheCaseBeginning.kt);
-* condition statement contains only comma - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/conditionStatementContainsOnlyComma.kt);
+* non-exhaustive with sealed class -
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveSealedClass.kt);
+* non-exhaustive with boolean -
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveBoolean.kt);
+* two consecutive trailing commas -
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/twoConsecutiveTrailingCommasAtTheCaseEnd.kt);
+* comma in the beginning of the case -
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/commaAtTheCaseBeginning.kt);
+* condition statement contains only comma -
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/conditionStatementContainsOnlyComma.kt);
 * use var in subject capture - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/declareVarInSubjectCapture.kt);
 
