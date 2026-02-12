@@ -26,13 +26,24 @@ fun main() {
 }
 ```
 
-✅ Expression with subject, without matching case outside top-level declaration - 'else' is assigned to result:
+✅ Expression with subject from variable, without matching case outside top-level declaration - 'else' is assigned to result:
 
 ```kotlin
 val subject = "foobar"
 val result = when (subject) {
     "bar" -> "not a match"
     "foo" -> "still not a match"
+    else -> "else"
+}
+```
+
+✅ Expression with subject from a function with matching case - 'a match' is assigned to result:
+
+```kotlin
+fun subjectFunc() = "foo"
+val result = when (subjectFunc()) {
+    "bar" -> "not a match"
+    "foo" -> "a match"
     else -> "else"
 }
 ```
@@ -527,7 +538,7 @@ fun main() {
 }
 ```
 
-✅ Trailing comma in case - no compilation/runtime error, result is assigned with 'match':
+✅ Trailing comma in case - result is assigned with 'match':
 
 ```kotlin
 fun main() {
@@ -540,7 +551,7 @@ fun main() {
 }
 ```
 
-✅ Explicitly typed subject capture - no compilation/runtime error, '1L' is printed out:
+✅ Explicitly typed subject capture - '1L' is printed out:
 
 ```kotlin
 fun main() {
@@ -552,7 +563,7 @@ fun main() {
 }
 ```
 
-✅ Use outer variable name in subject capture - no compilation/runtime error, '1' is printed out:
+✅ Use outer variable name in subject capture - '1' is printed out:
 
 ```kotlin
 fun main() {
@@ -564,7 +575,7 @@ fun main() {
 }
 ```
 
-✅ Branches with 'Nothing' types - no compilation error, result variable type is resolved to String:
+✅ Branches with 'Nothing' types - result variable type is resolved to String:
 
 ```kotlin
 val result: String = when ("test") {
@@ -575,18 +586,39 @@ val result: String = when ("test") {
 }
 ```
 
-✅ Unambiguous type is considered exhaustive in when expression - no compilation/runtime error, result is assigned with 'match':
+✅ Unambiguous type is considered exhaustive in when expression - result is assigned with 'match':
 
 ```kotlin
 val result: String = when (1L) {
-    is Long -> "match"
-    is Int -> "not a match"
+  is Long -> "match"
+  is Int -> "not a match"
 }
 ```
 
-## Negative ('red') checks
+✅ Lambda as a value in match block - 'test' is assigned to result:
+```kotlin
+val result = when ("bar") {
+    "bar" -> {
+        { "test" }
+    }
 
-### diagnostic errors
+    else -> {
+        { "else" }
+    }
+}.invoke()
+```
+
+✅ Nested parenthesis in subject declaration - 'test' is assigned to result:
+```kotlin
+val result = when (("bar")) {
+    "bar" -> "test"
+    else -> "else"
+}
+```
+
+## Diagnostic checks
+
+### errors (main focus)
 
 * non-exhaustive with open type -
   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveWithOpenType.kt);
@@ -647,3 +679,24 @@ val result: String = when (1L) {
     * ❗behavior seems inconsistent with '&&' case. Instead of 'Unexpected '||', use 'if' to introduce additional conditions;
       see https://kotl.in/guards-in-when', it just shows 'Expecting '->'' message. That's why I intentionally decided to leave related
       snippet failing.
+* attempt to use multiple subjects comma-separated - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/multipleSubjectsCommaSeparated.kt)
+* attempt to use multiple subjects semicolon-separated - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/multipleSubjectsSemicolonSeparated.kt)
+
+### warnings (decided to add a few cases as well)
+* Impossible 'is' case - no compilation error, only warning for 'is Number' is shown "Check for instance is always 'false'":
+```kotlin
+val result = when ("subject") {
+    "subject" -> "foo"
+    is Number -> "bar"
+}
+```
+see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/warnings/impossibleIsCheck.kt)
+
+* Useless 'is' case - no compilation error, only warning for "foo" case is shown "'when' branch is never reachable":
+```kotlin
+val result = when ("subject") {
+    "foo" -> "foo"
+    else -> "bar"
+}
+```
+see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/warnings/uselessIsCheck.kt)

@@ -12604,6 +12604,18 @@ public class LLReversedDiagnosticsFirTestGenerated extends AbstractLLReversedDia
       }
 
       @Test
+      @TestMetadata("multipleSubjectsCommaSeparated.kt")
+      public void testMultipleSubjectsCommaSeparated() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/multipleSubjectsCommaSeparated.kt");
+      }
+
+      @Test
+      @TestMetadata("multipleSubjectsSemicolonSeparated.kt")
+      public void testMultipleSubjectsSemicolonSeparated() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/multipleSubjectsSemicolonSeparated.kt");
+      }
+
+      @Test
       @TestMetadata("nonBooleanInGuard.kt")
       public void testNonBooleanInGuard() {
         runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/nonBooleanInGuard.kt");
@@ -12613,6 +12625,12 @@ public class LLReversedDiagnosticsFirTestGenerated extends AbstractLLReversedDia
       @TestMetadata("nonSubjectWhenWithRangeWithoutArgument.kt")
       public void testNonSubjectWhenWithRangeWithoutArgument() {
         runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/nonSubjectWhenWithRangeWithoutArgument.kt");
+      }
+
+      @Test
+      @TestMetadata("nullableTypeNonExhaustiveWithoutNullCase.kt")
+      public void testNullableTypeNonExhaustiveWithoutNullCase() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/nullableTypeNonExhaustiveWithoutNullCase.kt");
       }
 
       @Test
@@ -12643,6 +12661,18 @@ public class LLReversedDiagnosticsFirTestGenerated extends AbstractLLReversedDia
       @TestMetadata("typeErasureInIsCondition.kt")
       public void testTypeErasureInIsCondition() {
         runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/typeErasureInIsCondition.kt");
+      }
+
+      @Test
+      @TestMetadata("useBooleanAndOperatorInsteadOfIfInGuard.kt")
+      public void testUseBooleanAndOperatorInsteadOfIfInGuard() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/useBooleanAndOperatorInsteadOfIfInGuard.kt");
+      }
+
+      @Test
+      @TestMetadata("useBooleanOrOperatorInsteadOfIfInGuard.kt")
+      public void testUseBooleanOrOperatorInsteadOfIfInGuard() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/useBooleanOrOperatorInsteadOfIfInGuard.kt");
       }
 
       @Test
@@ -12685,6 +12715,28 @@ public class LLReversedDiagnosticsFirTestGenerated extends AbstractLLReversedDia
       @TestMetadata("withSubjectIncompatibleTypes.kt")
       public void testWithSubjectIncompatibleTypes() {
         runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/withSubjectIncompatibleTypes.kt");
+      }
+
+      @Nested
+      @TestMetadata("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/warnings")
+      @TestDataPath("$PROJECT_ROOT")
+      public class Warnings {
+        @Test
+        public void testAllFilesPresentInWarnings() {
+          KtTestUtil.assertAllTestsPresentByMetadataWithExcluded(this.getClass(), new File("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/warnings"), Pattern.compile("^([^.]+)\\.kt(\\.can-freeze-ide)?$"), null, true);
+        }
+
+        @Test
+        @TestMetadata("impossibleIsCheck.kt")
+        public void testImpossibleIsCheck() {
+          runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/warnings/impossibleIsCheck.kt");
+        }
+
+        @Test
+        @TestMetadata("uselessIsCheck.kt")
+        public void testUselessIsCheck() {
+          runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/warnings/uselessIsCheck.kt");
+        }
       }
     }
   }
