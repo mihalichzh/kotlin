@@ -12509,5 +12509,235 @@ public class LLReversedDiagnosticsFirTestGenerated extends AbstractLLReversedDia
         runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/versionOverloads/withLambdaDefaults.kt");
       }
     }
+
+    @Nested
+    @TestMetadata("compiler/fir/analysis-tests/testData/resolveWithStdlib/when")
+    @TestDataPath("$PROJECT_ROOT")
+    public class When {
+      @Test
+      public void testAllFilesPresentInWhen() {
+        KtTestUtil.assertAllTestsPresentByMetadataWithExcluded(this.getClass(), new File("compiler/fir/analysis-tests/testData/resolveWithStdlib/when"), Pattern.compile("^([^.]+)\\.kt(\\.can-freeze-ide)?$"), null, true);
+      }
+
+      @Test
+      @TestMetadata("booleanExpressionInWhenWithSubjectCase.kt")
+      public void testBooleanExpressionInWhenWithSubjectCase() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/booleanExpressionInWhenWithSubjectCase.kt");
+      }
+
+      @Test
+      @TestMetadata("capturedSubjectReassign.kt")
+      public void testCapturedSubjectReassign() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/capturedSubjectReassign.kt");
+      }
+
+      @Test
+      @TestMetadata("commaAtTheCaseBeginning.kt")
+      public void testCommaAtTheCaseBeginning() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/commaAtTheCaseBeginning.kt");
+      }
+
+      @Test
+      @TestMetadata("conditionStatementContainsOnlyComma.kt")
+      public void testConditionStatementContainsOnlyComma() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/conditionStatementContainsOnlyComma.kt");
+      }
+
+      @Test
+      @TestMetadata("declareVarInSubjectCapture.kt")
+      public void testDeclareVarInSubjectCapture() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/declareVarInSubjectCapture.kt");
+      }
+
+      @Test
+      @TestMetadata("emptyExpressionWhenBlock.kt")
+      public void testEmptyExpressionWhenBlock() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/emptyExpressionWhenBlock.kt");
+      }
+
+      @Test
+      @TestMetadata("expressionNonExhaustiveBoolean.kt")
+      public void testExpressionNonExhaustiveBoolean() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveBoolean.kt");
+      }
+
+      @Test
+      @TestMetadata("expressionNonExhaustiveSealedClass.kt")
+      public void testExpressionNonExhaustiveSealedClass() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveSealedClass.kt");
+      }
+
+      @Test
+      @TestMetadata("expressionNonExhaustiveWithEnum.kt")
+      public void testExpressionNonExhaustiveWithEnum() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveWithEnum.kt");
+      }
+
+      @Test
+      @TestMetadata("expressionNonExhaustiveWithOpenType.kt")
+      public void testExpressionNonExhaustiveWithOpenType() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveWithOpenType.kt");
+      }
+
+      @Test
+      @TestMetadata("expressionTypeMismatch.kt")
+      public void testExpressionTypeMismatch() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionTypeMismatch.kt");
+      }
+
+      @Test
+      @TestMetadata("guardConditionInWhenWIthoutSubject.kt")
+      public void testGuardConditionInWhenWIthoutSubject() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/guardConditionInWhenWIthoutSubject.kt");
+      }
+
+      @Test
+      @TestMetadata("misplacedElse.kt")
+      public void testMisplacedElse() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/misplacedElse.kt");
+      }
+
+      @Test
+      @TestMetadata("missingConditionStatement.kt")
+      public void testMissingConditionStatement() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/missingConditionStatement.kt");
+      }
+
+      @Test
+      @TestMetadata("multipleSubjectsCommaSeparated.kt")
+      public void testMultipleSubjectsCommaSeparated() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/multipleSubjectsCommaSeparated.kt");
+      }
+
+      @Test
+      @TestMetadata("multipleSubjectsSemicolonSeparated.kt")
+      public void testMultipleSubjectsSemicolonSeparated() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/multipleSubjectsSemicolonSeparated.kt");
+      }
+
+      @Test
+      @TestMetadata("nonBooleanInGuard.kt")
+      public void testNonBooleanInGuard() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/nonBooleanInGuard.kt");
+      }
+
+      @Test
+      @TestMetadata("nonSubjectWhenWithRangeWithoutArgument.kt")
+      public void testNonSubjectWhenWithRangeWithoutArgument() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/nonSubjectWhenWithRangeWithoutArgument.kt");
+      }
+
+      @Test
+      @TestMetadata("nullableTypeNonExhaustiveWithoutNullCase.kt")
+      public void testNullableTypeNonExhaustiveWithoutNullCase() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/nullableTypeNonExhaustiveWithoutNullCase.kt");
+      }
+
+      @Test
+      @TestMetadata("referOuterVariableInGuard.kt")
+      public void testReferOuterVariableInGuard() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/referOuterVariableInGuard.kt");
+      }
+
+      @Test
+      @TestMetadata("subjectWhenWithEmptySubject.kt")
+      public void testSubjectWhenWithEmptySubject() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/subjectWhenWithEmptySubject.kt");
+      }
+
+      @Test
+      @TestMetadata("subjectWhenWithWithoutBrackets.kt")
+      public void testSubjectWhenWithWithoutBrackets() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/subjectWhenWithWithoutBrackets.kt");
+      }
+
+      @Test
+      @TestMetadata("twoConsecutiveTrailingCommasAtTheCaseEnd.kt")
+      public void testTwoConsecutiveTrailingCommasAtTheCaseEnd() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/twoConsecutiveTrailingCommasAtTheCaseEnd.kt");
+      }
+
+      @Test
+      @TestMetadata("typeErasureInIsCondition.kt")
+      public void testTypeErasureInIsCondition() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/typeErasureInIsCondition.kt");
+      }
+
+      @Test
+      @TestMetadata("useBooleanAndOperatorInsteadOfIfInGuard.kt")
+      public void testUseBooleanAndOperatorInsteadOfIfInGuard() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/useBooleanAndOperatorInsteadOfIfInGuard.kt");
+      }
+
+      @Test
+      @TestMetadata("useBooleanOrOperatorInsteadOfIfInGuard.kt")
+      public void testUseBooleanOrOperatorInsteadOfIfInGuard() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/useBooleanOrOperatorInsteadOfIfInGuard.kt");
+      }
+
+      @Test
+      @TestMetadata("useGuardForMultipleConditionsCase.kt")
+      public void testUseGuardForMultipleConditionsCase() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/useGuardForMultipleConditionsCase.kt");
+      }
+
+      @Test
+      @TestMetadata("whenKeywordAsClassName.kt")
+      public void testWhenKeywordAsClassName() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsClassName.kt");
+      }
+
+      @Test
+      @TestMetadata("whenKeywordAsEnumEntry.kt")
+      public void testWhenKeywordAsEnumEntry() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsEnumEntry.kt");
+      }
+
+      @Test
+      @TestMetadata("whenKeywordAsFunctionName.kt")
+      public void testWhenKeywordAsFunctionName() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsFunctionName.kt");
+      }
+
+      @Test
+      @TestMetadata("whenKeywordAsVariableName.kt")
+      public void testWhenKeywordAsVariableName() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsVariableName.kt");
+      }
+
+      @Test
+      @TestMetadata("whenKeywordAsVariableType.kt")
+      public void testWhenKeywordAsVariableType() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/whenKeywordAsVariableType.kt");
+      }
+
+      @Test
+      @TestMetadata("withSubjectIncompatibleTypes.kt")
+      public void testWithSubjectIncompatibleTypes() {
+        runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/withSubjectIncompatibleTypes.kt");
+      }
+
+      @Nested
+      @TestMetadata("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/warnings")
+      @TestDataPath("$PROJECT_ROOT")
+      public class Warnings {
+        @Test
+        public void testAllFilesPresentInWarnings() {
+          KtTestUtil.assertAllTestsPresentByMetadataWithExcluded(this.getClass(), new File("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/warnings"), Pattern.compile("^([^.]+)\\.kt(\\.can-freeze-ide)?$"), null, true);
+        }
+
+        @Test
+        @TestMetadata("impossibleIsCheck.kt")
+        public void testImpossibleIsCheck() {
+          runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/warnings/impossibleIsCheck.kt");
+        }
+
+        @Test
+        @TestMetadata("uselessIsCheck.kt")
+        public void testUselessIsCheck() {
+          runTest("compiler/fir/analysis-tests/testData/resolveWithStdlib/when/warnings/uselessIsCheck.kt");
+        }
+      }
+    }
   }
 }
