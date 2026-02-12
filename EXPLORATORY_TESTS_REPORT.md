@@ -136,11 +136,11 @@ fun main() {
 
 ```kotlin
 fun main() {
-  val result = when (false) {
-    true -> "String1"
-    false -> "String2"
-  }
-  result.lowercase() // no error
+    val result = when (false) {
+        true -> "String1"
+        false -> "String2"
+    }
+    result.lowercase() // no error
 }
 ```
 
@@ -192,10 +192,10 @@ val result = when {
 
 ```kotlin
 fun main() {
-  when {
-    false -> throw Exception("should not throw")
-    true -> throw Exception("should throw")
-  }
+    when {
+        false -> throw Exception("should not throw")
+        true -> throw Exception("should throw")
+    }
 }
 ```
 
@@ -230,8 +230,8 @@ val result = when {
 fun multiply(l: Int, r: Int): Int = l * r
 
 val result = when {
-  multiply(l = 2, r = 3) > 2 -> "> 2"
-  else -> "else"
+    multiply(l = 2, r = 3) > 2 -> "> 2"
+    else -> "else"
 }
 ```
 
@@ -285,9 +285,10 @@ val test = when (subject) {
 ```
 
 ✅ Subject with 'in' range progression match - 'matched in progression' is assigned to result:
+
 ```kotlin
 fun main() {
-    when(3) {
+    when (3) {
         in 1..10 step 3 -> println("not in progression")
         in 1..10 step 2 -> println("matched in progression")
     }
@@ -299,9 +300,9 @@ fun main() {
 ```kotlin
 val subject = 'b'
 val result = when (subject) {
-  in 'a'..'c' -> "matched range"
-  in 'd'..'f' -> "not matched range"
-  else -> "not matched"
+    in 'a'..'c' -> "matched range"
+    in 'd'..'f' -> "not matched range"
+    else -> "not matched"
 }
 ```
 
@@ -309,12 +310,12 @@ val result = when (subject) {
 
 ```kotlin
 fun main() {
-  val subject = 6L
-  val result = when (subject) {
-    in 1..3 -> "not matched range"
-    !in 5L downTo 2L -> "matched downTo range"
-    else -> "not matched"
-  }
+    val subject = 6L
+    val result = when (subject) {
+        in 1..3 -> "not matched range"
+        !in 5L downTo 2L -> "matched downTo range"
+        else -> "not matched"
+    }
 }
 ```
 
@@ -398,6 +399,19 @@ fun main() {
 }
 ```
 
+✅ Null case is considered exhaustive for nullable subject when case with 'is <NonNullableSubjectType>' is present - 'subject' is assigned to
+result:
+
+```kotlin
+fun main() {
+    val subject: String? = "subject"
+    val result = when (subject) {
+        is String -> subject
+        null -> "subject is null"
+    }
+}
+```
+
 ✅ Guard with 'in' range - 'a match' is printed out:
 
 ```kotlin
@@ -427,14 +441,15 @@ fun main() {
     }
 }
 ```
+
 ✅ Smart casting by 'is' expression in guard - result is assigned with 'long string':
 
 ```kotlin
 val subject: Any = "ANY"
 val test = when (subject) {
-  is String if subject.length > 5 -> "long string"
-  is Number if subject.toLong() == 2L -> "small number"
-  else -> "not matched"
+    is String if subject.length > 5 -> "long string"
+    is Number if subject.toLong() == 2L -> "small number"
+    else -> "not matched"
 }
 ```
 
@@ -478,18 +493,18 @@ fun test(): String {
 
 ```kotlin
 fun main() {
-  val items = listOf("one", "two", "three")
-  for (item in items) {
-    when(item) {
-      "one" -> println("one")
-      "two" -> {
-        println("two")
-        break
-        println("two after break")
-      }
-      "three" -> println("three")
+    val items = listOf("one", "two", "three")
+    for (item in items) {
+        when (item) {
+            "one" -> println("one")
+            "two" -> {
+                println("two")
+                break
+                println("two after break")
+            }
+            "three" -> println("three")
+        }
     }
-  }
 }
 ```
 
@@ -497,18 +512,18 @@ fun main() {
 
 ```kotlin
 fun main() {
-  val itemsIterator = listOf("one", "two", "three").iterator()
-  while(itemsIterator.hasNext()) {
-    when(itemsIterator.next()) {
-      "one" -> println("one")
-      "two" -> {
-        println("two before continue")
-        continue
-        println("two")
-      }
-      "three" -> println("three")
+    val itemsIterator = listOf("one", "two", "three").iterator()
+    while (itemsIterator.hasNext()) {
+        when (itemsIterator.next()) {
+            "one" -> println("one")
+            "two" -> {
+                println("two before continue")
+                continue
+                println("two")
+            }
+            "three" -> println("three")
+        }
     }
-  }
 }
 ```
 
@@ -550,8 +565,9 @@ fun main() {
 ```
 
 ✅ Branches with 'Nothing' types - no compilation error, result variable type is resolved to String:
+
 ```kotlin
-val result: String = when("test") {
+val result: String = when ("test") {
     is String -> "String"
     is Int -> "Int"
     is Double -> TODO("implement me")
@@ -560,15 +576,17 @@ val result: String = when("test") {
 ```
 
 ✅ Unambiguous type is considered exhaustive in when expression - no compilation/runtime error, result is assigned with 'match':
+
 ```kotlin
-val result: String = when(1L) {
+val result: String = when (1L) {
     is Long -> "match"
     is Int -> "not a match"
 }
 ```
 
 ## Negative ('red') checks
-### diagnostic
+
+### diagnostic errors
 
 * non-exhaustive with open type -
   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveWithOpenType.kt);
@@ -602,8 +620,8 @@ val result: String = when(1L) {
   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/useGuardForMultipleConditionsCase.kt);
 * use guard condition in when without subject -
   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/guardConditionInWhenWIthoutSubject.kt);
-* use non-boolean in guard - 
-    see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/nonBooleanInGuard.kt);
+* use non-boolean in guard -
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/nonBooleanInGuard.kt);
 * non-exhaustive with enum - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveWithEnum.kt);
 * non-exhaustive with sealed class -
   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveSealedClass.kt);
@@ -616,5 +634,16 @@ val result: String = when(1L) {
 * condition statement contains only comma -
   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/conditionStatementContainsOnlyComma.kt);
 * use var in subject capture - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/declareVarInSubjectCapture.kt);
-* generics type erasure in 'is' conditions - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/typeErasureInIsCondition.kt);
-* attempt to reassign captured subject - see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/capturedSubjectReassign.kt);
+* generics type erasure in 'is' conditions -
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/typeErasureInIsCondition.kt);
+* attempt to reassign captured subject -
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/capturedSubjectReassign.kt);
+* 'is' with non-nullable type is not exhaustive for nullable type subject -
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/nullableTypeNonExhaustiveWithoutNullCase.kt)
+* attempt to use && instead of 'if' guard -
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/useBooleanAndOperatorInsteadOfIfInGuard.kt);
+* attempt to use || instead of 'if' guard -
+  see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/useBooleanOrOperatorInsteadOfIfInGuard.kt):
+    * ❗behavior seems inconsistent with '&&' case. Instead of 'Unexpected '||', use 'if' to introduce additional conditions;
+      see https://kotl.in/guards-in-when', it just shows 'Expecting '->'' message. That's why I intentionally decided to leave related
+      snippet failing.
