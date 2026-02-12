@@ -284,6 +284,40 @@ val test = when (subject) {
 }
 ```
 
+✅ Subject with 'in' range progression match - 'matched in progression' is assigned to result:
+```kotlin
+fun main() {
+    when(3) {
+        in 1..10 step 3 -> println("not in progression")
+        in 1..10 step 2 -> println("matched in progression")
+    }
+}
+```
+
+✅ Subject of Char type with 'in' range match - 'matched range' is assigned to result:
+
+```kotlin
+val subject = 'b'
+val result = when (subject) {
+  in 'a'..'c' -> "matched range"
+  in 'd'..'f' -> "not matched range"
+  else -> "not matched"
+}
+```
+
+✅ Subject of Long type with '!in' reversed range match - 'matched range' is assigned to result:
+
+```kotlin
+fun main() {
+  val subject = 6L
+  val result = when (subject) {
+    in 1..3 -> "not matched range"
+    !in 5L downTo 2L -> "matched downTo range"
+    else -> "not matched"
+  }
+}
+```
+
 ✅ Subject with 'is' expression match - 'match' is assigned to result:
 
 ```kotlin
