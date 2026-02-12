@@ -1,8 +1,8 @@
-# What to test (draft)
+# Exploratory tests report
 
-## 'green' cases
+## 'green' cases checked
 
-* Statement without subject, with matching case inside top-level declaration - 'a match' is printed:
+✅ Statement without subject, with matching case inside top-level declaration - 'a match' is printed:
 
 ```kotlin
 fun main() {
@@ -13,7 +13,7 @@ fun main() {
 }
 ```
 
-* Expression with subject, with matching case inside top-level declaration - 'a match' is assigned to result:
+✅ Expression with subject, with matching case inside top-level declaration - 'a match' is assigned to result:
 
 ```kotlin
 fun main() {
@@ -26,7 +26,7 @@ fun main() {
 }
 ```
 
-* Expression with subject, without matching case outside top-level declaration - 'else' is assigned to result:
+✅ Expression with subject, without matching case outside top-level declaration - 'else' is assigned to result:
 
 ```kotlin
 val subject = "foobar"
@@ -37,7 +37,7 @@ val result = when (subject) {
 }
 ```
 
-* Statement with subject variable non-exhaustive - no compilation/runtime errors:
+✅ Statement with subject variable non-exhaustive - no compilation/runtime errors:
 
 ```kotlin
 fun main() {
@@ -49,7 +49,7 @@ fun main() {
 }
 ```
 
-* Statement with subject literal - 'a match' is printed:
+✅ Statement with subject literal - 'a match' is printed:
 
 ```kotlin
 fun main() {
@@ -60,7 +60,7 @@ fun main() {
 }
 ```
 
-* Statement without variable assignment - no compilation/runtime errors:
+✅ Statement without variable assignment - no compilation/runtime errors:
 
 ```kotlin
 val subject = "foobar"
@@ -71,7 +71,7 @@ when (subject) {
 }
 ```
 
-* Expression exhaustive with enum subject - 'result' is assigned with matching value:
+✅ Expression exhaustive with enum subject - 'result' is assigned with matching value:
 
 ```kotlin
 val enumSubject = SubjectOption.entries.random()
@@ -82,7 +82,7 @@ val result = when (enumSubject) {
 }
 ```
 
-* Expression exhaustive with boolean - 'result' is assigned with matching value:
+✅ Expression exhaustive with boolean - 'result' is assigned with matching value:
 
 ```kotlin
 val bool = Random.nextDouble(until = 1.0) <= 0.5
@@ -92,7 +92,7 @@ val result = when (bool) {
 }
 ```
 
-* Expression exhaustive with sealed class - 'result' is assigned with matching value:
+✅ Expression exhaustive with sealed class - 'result' is assigned with matching value:
 
 ```kotlin
 sealed interface Sealed
@@ -108,7 +108,7 @@ fun main() {
 }
 ```
 
-* Expression returning boolean in statements - 'result' is assigned with matching value:
+✅ Expression returning boolean in statements - 'result' is assigned with matching value:
 
 ```kotlin
 val subject = "bla"
@@ -118,11 +118,11 @@ val result = when {
 }
 ```
 
-* Statement with case duplicate - no compilation/runtime errors, first matched value is printed to console:
+✅ Statement with case duplicate - no compilation/runtime errors, first matched value is printed to console:
 
 ```kotlin
 fun main() {
-    val bool = Random.nextDouble(until = 1.0) <= 0.5
+    val bool = true
     when (bool) {
         true -> println(1)
         false -> println(2)
@@ -132,17 +132,19 @@ fun main() {
 }
 ```
 
-* Expression with cases returning same type - result type is resolved to values type:
+✅ Expression with cases returning same type - result type is resolved to values type:
 
 ```kotlin
-val bool = Random.nextDouble(until = 1.0) <= 0.5
-val result = when (bool) {
+fun main() {
+  val result = when (false) {
     true -> "String1"
     false -> "String2"
+  }
+  result.lowercase() // no error
 }
 ```
 
-* Expression with cases returning different types - result type is resolved with Any (closest common type):
+✅ Expression with cases returning different types - result type is resolved with Any (closest common type):
 
 ```kotlin
 val subject = "foo"
@@ -153,7 +155,7 @@ val result = when (subject) {
 }
 ```
 
-* Expression with subject and only 'else' case - result is assigned with 'only else':
+✅ Expression with subject and only 'else' case - result is assigned with 'only else':
 
 ```kotlin
 val result = when ("subject") {
@@ -161,7 +163,7 @@ val result = when ("subject") {
 }
 ```
 
-* Statement with single-line block - no compilation/runtime errors, 'block' is printed:
+✅ Statement with single-line block - no compilation/runtime errors, 'block' is printed:
 
 ```kotlin
 fun main() {
@@ -173,7 +175,7 @@ fun main() {
 }
 ```
 
-* Expression with multi-line block - result is assigned with 'match':
+✅ Expression with multi-line block - result is assigned with 'match':
 
 ```kotlin
 val result = when {
@@ -186,17 +188,18 @@ val result = when {
 }
 ```
 
-* With exception throw:
+✅ With exception throw - exception from matching case is thrown:
 
 ```kotlin
 fun main() {
-    when {
-        Random.nextDouble(until = 1.0) < 2.0 -> throw Exception()
-    }
+  when {
+    false -> throw Exception("should not throw")
+    true -> throw Exception("should throw")
+  }
 }
 ```
 
-* Nested where block - matching case from nested when is invoked:
+✅ Nested where block - matching case from nested when is invoked:
 
 ```kotlin
 fun main() {
@@ -210,7 +213,7 @@ fun main() {
 }
 ```
 
-* Multiple matches (TODO - clarify a warning) - result is assigned with the first match:
+✅ Multiple matches - result is assigned with the first match:
 
 ```kotlin
 val subject = "foo bar"
@@ -221,23 +224,18 @@ val result = when {
 }
 ```
 
-Potential bug - IDE shows irrelevant warning for the second match:
-![img.png](img.png)
-IDE build: Build #IU-253.30387.90
-Project kotlin version: 2.3.0
-
-* Case with value from function - no compilation errors, result is assigned with matching case value:
+✅ Case with value from function - no compilation errors, result is assigned with matching case value:
 
 ```kotlin
-fun randomInt(): Int = Random.nextInt()
+fun multiply(l: Int, r: Int): Int = l * r
 
 val result = when {
-    randomInt() > 2 -> "> 2"
-    else -> "else"
+  multiply(l = 2, r = 3) > 2 -> "> 2"
+  else -> "else"
 }
 ```
 
-* Multiple conditions (coma separated) - result is assigned with matching case value:
+✅ Multiple conditions (comma separated) - result is assigned with matching case value:
 
 ```kotlin
 fun main() {
@@ -250,7 +248,7 @@ fun main() {
 }
 ```
 
-* Multiple match in multiple conditions - result is assigned value from first matching case:
+✅ Multiple match in multiple conditions - result is assigned value from first matching case:
 
 ```kotlin
 fun main() {
@@ -265,7 +263,7 @@ fun main() {
 }
 ```
 
-* Subject with 'in' range match - 'matched range' is assigned to result:
+✅ Subject with 'in' range match - 'matched range' is assigned to result:
 
 ```kotlin
 val subject = 2
@@ -275,7 +273,7 @@ val result = when (subject) {
 }
 ```
 
-* Subject with '!in' range match - 'matched range' is assigned to result:
+✅ Subject with '!in' range match - 'matched range' is assigned to result:
 
 ```kotlin
 val subject = 4
@@ -286,7 +284,7 @@ val test = when (subject) {
 }
 ```
 
-* Subject with 'is' expression match - 'match' is assigned to result:
+✅ Subject with 'is' expression match - 'match' is assigned to result:
 
 ```kotlin
 val subject = 4
@@ -297,7 +295,7 @@ val test = when (subject) {
 }
 ```
 
-* Subject with '!is' expression match - 'match' is assigned to result:
+✅ Subject with '!is' expression match - 'match' is assigned to result:
 
 ```kotlin
 val subject = 4
@@ -308,7 +306,7 @@ val test = when (subject) {
 }
 ```
 
-* Smart casting by 'is' expression in match body - no compilation/runtime errors, result is assigned with lowercased subject value:
+✅ Smart casting by 'is' expression in match body - result is assigned with lowercased subject value:
 
 ```kotlin
 val subject: Any = "ANY"
@@ -319,7 +317,7 @@ val test = when (subject) {
 }
 ```
 
-* Variable declaration within the subject - 'foo' is printed out:
+✅ Variable declaration within the subject - 'foo' is printed out:
 
 ```kotlin
 fun main() {
@@ -330,7 +328,7 @@ fun main() {
 }
 ```
 
-* Guard statement with single boolean - 'a match' is assigned to result:
+✅ Guard statement with single boolean - 'a match' is assigned to result:
 
 ```kotlin
 val value = "foo"
@@ -341,7 +339,7 @@ val result = when (value) {
 }
 ```
 
-* Guard statement with boolean expression - 'a match' is printed out:
+✅ Guard statement with boolean expression - 'a match' is printed out:
 
 ```kotlin
 fun main() {
@@ -354,7 +352,7 @@ fun main() {
 }
 ```
 
-* Match with null case - 'a match' is printed out:
+✅ Match with null case - 'a match' is printed out:
 
 ```kotlin
 fun main() {
@@ -366,7 +364,7 @@ fun main() {
 }
 ```
 
-* Guard with 'in' range - 'a match' is printed out:
+✅ Guard with 'in' range - 'a match' is printed out:
 
 ```kotlin
 fun main() {
@@ -378,7 +376,7 @@ fun main() {
 }
 ```
 
-* Guard is executed on match only - 'func is executed with foo\namatch' is printed out:
+✅ Guard is lazily executed on match only - 'func is executed with foo\na match' is printed out:
 
 ```kotlin
 fun func(parameter: String): Boolean {
@@ -395,7 +393,7 @@ fun main() {
     }
 }
 ```
-* Smart casting by 'is' expression in guard - no compilation/runtime errors, result is assigned with 'long string':
+✅ Smart casting by 'is' expression in guard - result is assigned with 'long string':
 
 ```kotlin
 val subject: Any = "ANY"
@@ -406,7 +404,7 @@ val test = when (subject) {
 }
 ```
 
-* Guard condition with else if - no compilation/runtime errors, 'result' is assigned with '>2':
+✅ Guard condition with else if - 'result' is assigned with '>2':
 
 ```kotlin
 fun main() {
@@ -419,7 +417,17 @@ fun main() {
 }
 ```
 
-* Return from when block - function returns 'from foo block':
+✅ Matching by guard statement when the main case is duplicated - 'a match' is assigned to result:
+
+```kotlin
+val result = when ("foo") {
+    is String if value.length > 5 -> "not a match"
+    is String if value.length < 5 -> "a match"
+    else -> "else"
+}
+```
+
+✅ Return from when block - function returns 'from foo block':
 
 ```kotlin
 fun test(): String {
@@ -432,7 +440,45 @@ fun test(): String {
 }
 ```
 
-* Trailing comma in case - no compilation/runtime error, result is assigned with 'match':
+✅ 'for' loop break from when block - only 'one' and 'two' are printed out to console:
+
+```kotlin
+fun main() {
+  val items = listOf("one", "two", "three")
+  for (item in items) {
+    when(item) {
+      "one" -> println("one")
+      "two" -> {
+        println("two")
+        break
+        println("two after break")
+      }
+      "three" -> println("three")
+    }
+  }
+}
+```
+
+✅ 'while' loop continue from when block - only 'one', 'two before continue' and 'three' are printed out to console:
+
+```kotlin
+fun main() {
+  val itemsIterator = listOf("one", "two", "three").iterator()
+  while(itemsIterator.hasNext()) {
+    when(itemsIterator.next()) {
+      "one" -> println("one")
+      "two" -> {
+        println("two before continue")
+        continue
+        println("two")
+      }
+      "three" -> println("three")
+    }
+  }
+}
+```
+
+✅ Trailing comma in case - no compilation/runtime error, result is assigned with 'match':
 
 ```kotlin
 fun main() {
@@ -445,7 +491,7 @@ fun main() {
 }
 ```
 
-* Explicitly typed subject capture - no compilation/runtime error, '1L' is printed out:
+✅ Explicitly typed subject capture - no compilation/runtime error, '1L' is printed out:
 
 ```kotlin
 fun main() {
@@ -457,7 +503,7 @@ fun main() {
 }
 ```
 
-* Use outer variable name in subject capture - no compilation/runtime error, '1' is printed out:
+✅ Use outer variable name in subject capture - no compilation/runtime error, '1' is printed out:
 
 ```kotlin
 fun main() {
@@ -469,7 +515,7 @@ fun main() {
 }
 ```
 
-* Branches with 'Nothing' types - no compilation error, result variable type is resolved to String:
+✅ Branches with 'Nothing' types - no compilation error, result variable type is resolved to String:
 ```kotlin
 val result: String = when("test") {
     is String -> "String"
@@ -479,7 +525,7 @@ val result: String = when("test") {
 }
 ```
 
-* Unambiguous type is considered exhaustive in when expression - no compilation/runtime error, result is assigned with 'match':
+✅ Unambiguous type is considered exhaustive in when expression - no compilation/runtime error, result is assigned with 'match':
 ```kotlin
 val result: String = when(1L) {
     is Long -> "match"
@@ -488,6 +534,7 @@ val result: String = when(1L) {
 ```
 
 ## Negative ('red') checks
+### diagnostic
 
 * non-exhaustive with open type -
   see [snippet](compiler/fir/analysis-tests/testData/resolveWithStdlib/when/expressionNonExhaustiveWithOpenType.kt);
